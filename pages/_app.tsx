@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/client'
 import client from "../apollo-client";
 import { Toaster } from 'react-hot-toast'
 
-function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
+function MyApp({ Component, pageProps: {session, ...pageProps} }: any) {
   return (
     <ApolloProvider client={client}>
       <SessionProvider session={session}>
