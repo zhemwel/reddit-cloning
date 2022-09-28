@@ -12,7 +12,7 @@ const Header = () => {
     <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm items-center">
       <div className="relative h-10 w-20 flex-shrink-0 cursor-pointer">
         <Link href="/">
-          <img className="mt-1" src="https://links.papareact.com/fqy" alt="" />
+          <img className="mt-1 max-w-[40%] ml-8" src="/reddit.png" alt="" />
         </Link>
       </div>
 
@@ -27,8 +27,8 @@ const Header = () => {
         <SearchIcon className="h-6 w-6 text-gray-400" />
         <input
           className="flex-1 bg-transparent outline-none"
-          type="text" 
-          placeholder="Search Reddit" 
+          type="text"
+          placeholder="Search Reddit"
         />
         <button type="submit" hidden/>
       </form>
@@ -50,14 +50,14 @@ const Header = () => {
 
       {/* Auth Button */}
       {session ? (
-        <div 
-          onClick={() => signOut()} 
+        <div
+          onClick={() => signOut()}
           className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex"
         >
           <div className="relative h-5 w-5 flex-shrink-0">
             <Image
               objectFit="contain"
-              src="https://links.papareact.com/23l" 
+              src="/reddit-black.png"
               layout="fill"
               alt=""
             />
@@ -71,14 +71,14 @@ const Header = () => {
           <ChevronDownIcon className="h-5 flex-shrink-0 text-gray-400" />
         </div>
       ) : (
-        <div 
-          onClick={() => signIn()} 
+        <div
+          onClick={() => signIn()}
           className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex"
         >
           <div className="relative h-5 w-5 flex-shrink-0">
             <Image
               objectFit="contain"
-              src="https://links.papareact.com/23l" 
+              src="/reddit-black.png"
               layout="fill"
               alt=""
             />
@@ -87,7 +87,7 @@ const Header = () => {
           <p className="text-gray-400">Sign In</p>
         </div>
       )}
-      
+
     </div>
   )
 }
