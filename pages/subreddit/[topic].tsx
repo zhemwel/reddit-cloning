@@ -3,11 +3,14 @@ import React from 'react'
 import Avatar from '../../components/Avatar'
 import Feed from '../../components/Feed'
 import PostBox from '../../components/PostBox'
+import { TabTitle } from '../../utils/GeneralFunction'
 
 const Subreddit = () => {
   const {
     query: {topic},
   } = useRouter()
+
+  TabTitle(`${topic ? "r/"+ topic : "Topic"}`)
 
   return (
     <div className={`h-24 bg-red-400 p-8`}>

@@ -30,9 +30,9 @@ const Post = ({post}: Props) => {
 
   useEffect(() => {
     const votes: Vote[] = data?.getVotesByPostId
-    
+
     // Latest vote (as we sorted ny newly created first in SQL query)
-    // Note: You could improve this by moving it to the original Query 
+    // Note: You could improve this by moving it to the original Query
     const vote = votes?.find(
       (vote) => vote.username == session?.user?.name
     )?.upvote
@@ -46,12 +46,12 @@ const Post = ({post}: Props) => {
       return
     }
     console.log(isUpvote);
-    
+
     if (vote && isUpvote) return
     if (vote === false && !isUpvote) return
 
     console.log("Voting...", isUpvote)
-    
+
     await addVote({
       variables: {
         post_id: post.id,
@@ -69,7 +69,7 @@ const Post = ({post}: Props) => {
       (total, vote) => (vote.upvote ? (total += 1) : (total -= 1)),
       0
     )
-    
+
     if (votes?.length === 0) return 0
 
     if (displayNumber === 0) {
@@ -79,26 +79,17 @@ const Post = ({post}: Props) => {
     return displayNumber
   }
 
-  if (!post)
-    return (
-      <div className="flex w-full items-center justify-center p-10 text-xl">
-        <Jelly size={50} color="#FF4501" />
-      </div>
-    )
-
-  console.log(vote);
-  
   return (
     <Link href={`/post/${post.id}`}>
       <div className="rounded-md flex cursor-pointer border border-gray-300 bg-white shadow-sm hover:border hover:border-gray-600">
         {/* Votes */}
         <div className="flex flex-col items-center justify-start space-y-1 rounded-l-md bg-gray-50 p-4 text-gray-400">
-          <ArrowUpIcon 
+          <ArrowUpIcon
             onClick={() => upVote(true)}
             className={`voteButtons hover:text-red-400 ${vote && `text-red-400`}`}
           />
           <p className="text-xs font-bold text-black">{displayVotes(data)}</p>
-          <ArrowDownIcon 
+          <ArrowDownIcon
             onClick={() => upVote(false)}
             className={`voteButtons hover:text-blue-400 ${vote === false && "text-blue-400"}`}
           />

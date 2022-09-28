@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Post from '../../components/Post'
 import { GET_POST_BY_POST_ID } from '../../graphql/queries'
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,12 +9,15 @@ import { ADD_COMMENT } from '../../graphql/mutations'
 import toast from 'react-hot-toast'
 import Avatar from '../../components/Avatar'
 import Timeago from 'react-timeago'
+import { TabTitle } from '../../utils/GeneralFunction'
+import { Jelly } from '@uiball/loaders'
 
 type FormData = {
   comment: string
 }
 
 const PostPage = () => {
+  TabTitle("Post")
   const router = useRouter()
   const { data: session } = useSession()
   const [ addComment ] = useMutation(ADD_COMMENT, {
@@ -38,8 +41,6 @@ const PostPage = () => {
   } = useForm<FormData>()
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(data);
-    
     const notification = toast.loading("Posting your comment...")
 
     await addComment({
@@ -57,7 +58,13 @@ const PostPage = () => {
     })
   }
 
-  console.log(data)
+  if (!post)
+    return (
+      <div className="flex w-full items-center justify-center p-10 text-xl">
+        <Jelly size={50} color="#FF4501" />
+      </div>
+    )
+
   return (
     <div className="mx-auto my-7 max-w-5xl">
       <Post post={post} />

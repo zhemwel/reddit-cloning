@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     <div className="my-7 mx-auto max-w-5xl">
       <Head>
         <title>Reddit Cloning</title>
-        <link rel="icon" href="/Z.jpg" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       {/* PostBox */}
