@@ -1,19 +1,20 @@
 import { useRouter } from 'next/router'
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import Avatar from '../../components/Avatar'
 import Feed from '../../components/Feed'
 import PostBox from '../../components/PostBox'
-import { TabTitle } from '../../utils/GeneralFunction'
 
 const Subreddit = () => {
   const {
     query: {topic},
   } = useRouter()
 
-  TabTitle(`${topic ? "r/"+ topic : "Topic"}`)
-
   return (
     <div className={`h-24 bg-red-400 p-8`}>
+      <Helmet>
+          <title>r/{`${topic as string}`}</title>
+      </Helmet>
       <div className="-mx-8 mt-10 bg-white">
         <div className="mt-auto flex max-w-5xl items-center space-x-4 pb-3">
           <div className="-mt-5">

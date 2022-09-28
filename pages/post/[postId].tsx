@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Post from '../../components/Post'
 import { GET_POST_BY_POST_ID } from '../../graphql/queries'
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,15 +9,14 @@ import { ADD_COMMENT } from '../../graphql/mutations'
 import toast from 'react-hot-toast'
 import Avatar from '../../components/Avatar'
 import Timeago from 'react-timeago'
-import { TabTitle } from '../../utils/GeneralFunction'
 import { Jelly } from '@uiball/loaders'
+import { Helmet } from "react-helmet";
 
 type FormData = {
   comment: string
 }
 
 const PostPage = () => {
-  TabTitle("Post")
   const router = useRouter()
   const { data: session } = useSession()
   const [ addComment ] = useMutation(ADD_COMMENT, {
@@ -61,12 +60,19 @@ const PostPage = () => {
   if (!post)
     return (
       <div className="flex w-full items-center justify-center p-10 text-xl">
+        <Helmet>
+            <title>Post</title>
+        </Helmet>
         <Jelly size={50} color="#FF4501" />
       </div>
     )
 
   return (
     <div className="mx-auto my-7 max-w-5xl">
+      <Helmet>
+          <title>Post</title>
+      </Helmet>
+
       <Post post={post} />
 
       <div className="-mt-1 rounded-b-md border border-t-0 border-gray-300 bg-white p-5 pl-16">
